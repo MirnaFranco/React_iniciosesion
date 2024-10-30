@@ -1,7 +1,8 @@
 import React from 'react';
-import { SessionProvider, useSession } from './Context/SessionProvider.jsx';
-import Login from './components/Login';
-import Home from './components/Home';
+import { SessionProvider } from './Context/SessionProvider.jsx';
+import { useSession } from './hooks/useSession.js';
+import Login from './components/Login.jsx';
+import Home from './components/Home.jsx';
 
 const Main = () => {
   const { session } = useSession();

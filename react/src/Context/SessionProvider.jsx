@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export const SessionContext = createContext();
 
-
 export const SessionProvider = ({ children }) => {
   const [session, setSession] = useState(null); // Estado de sesión
   const [loading, setLoading] = useState(false); // Estado de carga
@@ -13,8 +12,9 @@ export const SessionProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post('URL_DEL_BACKEND/login', credentials);
-      setSession(response.data); // Guarda los datos de sesión (por ejemplo, token y usuario)
+      const response = await axios.post('http://localhost:5000/auth/login', credentials);
+      const { token, user } = response.data;
+      setSession({ token, user }); // Guarda el token y los datos del usuario en la sesión
     } catch (err) {
       setError('Credenciales inválidas');
     } finally {
